@@ -5,10 +5,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/vote")
-public class Vote {
+@RequestMapping("/")
+public class MenuController {
+	
 	@GetMapping
-	public String login() {
-		return "vote";
+	public String menu() {
+		return "Menu";
+		
 	}
-} 
+}
