@@ -18,6 +18,7 @@
 	crossorigin="anonymous"></script>
 
 <body>
-	<!-- doBody insière le contenu défini dans l'utilisation du tag --><jsp:doBody />
+	<!-- doBody insière le contenu défini dans l'utilisation du tag -->
+	<jsp:doBody />
 </body>
 </html>

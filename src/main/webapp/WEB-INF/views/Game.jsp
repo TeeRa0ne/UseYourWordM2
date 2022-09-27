@@ -12,18 +12,25 @@
 </head>
 <body>
 	<t:base title="UYW - En jeu">
-		<div class="container">
-			<h3>Use Your Words</h3>
+		<div class="container row flex-edges">
+			<div class="sm-6 col">
+				<h3>Use Your Words</h3>
+			</div>
+			<div class="sm-6 col">
+				<a href="/use_your_words/" class="paper-btn margin">Retour</a>
+			</div>
 		</div>
 		<div class="row flex-center">
 			<div class="col-6 col">
 				<img src="https://unsplash.it/600" />
 			</div>
-			<div class="form-group col-4 col">
+			<form method="POST" class="form-group col-4 col">
 				<label for="large-input">Votre réponse :</label>
-				<textarea style="margin-bottom: 20px" class="border border-5 border-primary" id="large-input" rows="4" cols="50" placeholder="Décrire l'image..."></textarea>
+				<textarea style="margin-bottom: 20px"
+					class="border border-5 border-primary" id="large-input" rows="4"
+					cols="50" placeholder="Décrire l'image..."></textarea>
 				<button class="btn-block border border-4 border-primary">Envoyer</button>
-			</div>
+			</form>
 		</div>
 	</t:base>
 </body>
