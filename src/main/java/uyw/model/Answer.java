@@ -1,4 +1,4 @@
-package use_your_words.model;
+package uyw.model;
 
 public class Answer {
 	

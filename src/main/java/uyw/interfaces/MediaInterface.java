@@ -1,4 +1,4 @@
-package use_your_words.interfaces;
+package uyw.interfaces;
 
 public interface MediaInterface {
 		

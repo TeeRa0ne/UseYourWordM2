@@ -17,7 +17,7 @@
 				<h3>Use Your Words</h3>
 			</div>
 			<div class="sm-6 col">
-				<a href="/use_your_words/" class="paper-btn margin">Retour</a>
+				<a href="/" class="paper-btn margin">Retour</a>
 			</div>
 		</div>
 		<div class="row flex-center">

@@ -1,4 +1,4 @@
-package use_your_words.controller;
+package uyw.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

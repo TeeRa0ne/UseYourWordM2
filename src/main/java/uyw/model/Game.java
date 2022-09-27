@@ -1,4 +1,4 @@
-package use_your_words.model;
+package uyw.model;
 
 import java.util.ArrayList;
 import java.util.List;
