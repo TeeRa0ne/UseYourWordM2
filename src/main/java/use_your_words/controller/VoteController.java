@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/vote")
 public class VoteController {
 	@GetMapping
-	public String login() {
+	public String vote() {
 		return "vote";
 	}
 } 
