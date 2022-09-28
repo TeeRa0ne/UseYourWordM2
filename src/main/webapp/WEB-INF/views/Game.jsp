@@ -22,7 +22,17 @@
 		</div>
 		<div class="row flex-center">
 			<div class="col-6 col">
-				<img src="https://unsplash.it/600" />
+				<c:if test="${media.media == 'IMAGE'}">
+					<img src="${media.url}" />
+				</c:if>
+				<c:if test="${media.media == 'VIDEO'}">
+					<iframe width="560" height="315" src="${media.url}" class="border border-4 border-primary" title="Rick Roll" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>	
+				</c:if>
+				<c:if test="${media.media == 'TEXTE'}">
+					<div class="border border-4 border-primary">
+						<p>${media.url}</p>
+					</div>
+				</c:if>
 			</div>
 			<form method="POST" class="form-group col-4 col">
 				<label for="large-input">Votre réponse :</label>

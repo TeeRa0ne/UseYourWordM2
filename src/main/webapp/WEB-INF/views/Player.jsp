@@ -38,7 +38,6 @@
 						</div>
 						<button style="margin-top: 20px" class="btn-block border border-4 border-primary" type="submit">Ajouter</button>
 					</div>
-					${ debug.id }
 				</form>
 				<div class="col">
 					<a href="/players/go">
