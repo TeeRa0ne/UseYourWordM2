@@ -16,20 +16,30 @@
 				<h3>Use Your Words</h3>
 			</div>
 			<div class="sm-6 col">
-				<a href="/use_your_words/" class="paper-btn margin">Retour</a>
+				<a href="/" class="paper-btn margin">Retour</a>
 			</div>
 		</div>
 		<div class="row flex-center">
 			<form method="POST" class="form-group row">
-        <div class="col sm-8">
-        <p>Les joueurs : $"{playerList}"</p>
-          <div class="form-group">
-            <label for="paperInputs3">Entrée les joueurs</label>
-            <input class="input-block" type="text" id="paperInputs3">
+        <div class="sm-8 col">
+        <p>Les joueurs : </p>
+				<ul class="inline">
+					<c:forEach items="${players}" var="player">
+						<li>${player.username}</li>
+					</c:forEach>
+				</ul>
+          <div class="form-group row">
+            <label for="paperInputs3">Entrée les noms des joueurs : </label>
+            <input class="input-block" type="text" id="paperInputs3" name="name">
+						<c:if test="${error}">
+							<p style="color: red, font-weight:bold">${error}</p>
+						</c:if>
+					</div>
+				    <button style="margin-top: 20px" class="btn-block border border-4 border-primary" type="submit">Ajouter</button>
           </div>
-        </div>
-        <div>
-				  <button class="btn-block border border-4 border-primary">Envoyer</button>
+					<a href="/game">
+					  <button style="margin-top: 20px" class="btn-block border border-4 border-primary">Lancer la partie</button>
+					</a>
         </div>
 			</form>
 		</div>
