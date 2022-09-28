@@ -24,4 +24,8 @@ public class Player {
 
 	@Column(name = "player_name", nullable = false)
 	private String username;
+
+	public Player(String username) {
+		this.username = username;
+	}
 }

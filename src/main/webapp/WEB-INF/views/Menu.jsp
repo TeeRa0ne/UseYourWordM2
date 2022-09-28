@@ -15,7 +15,7 @@
 			<h1>Use Your Words</h1>
 			<div class="row">
 				<div class="col-4 col">
-					<a href="/game">
+					<a href="/players">
 						<button class="btn-block">Jouer</button>
 					</a>
 				</div>
