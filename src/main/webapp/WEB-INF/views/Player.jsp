@@ -20,28 +20,32 @@
 			</div>
 		</div>
 		<div class="row flex-center">
-			<form method="POST" class="form-group row">
-        <div class="sm-8 col">
-        <p>Les joueurs : </p>
-				<ul class="inline">
-					<c:forEach items="${players}" var="player">
-						<li>${player.username}</li>
-					</c:forEach>
-				</ul>
-          <div class="form-group row">
-            <label for="paperInputs3">Entrée les noms des joueurs : </label>
-            <input class="input-block" type="text" id="paperInputs3" name="name">
-						<c:if test="${error}">
-							<p style="color: red, font-weight:bold">${error}</p>
+			<div>
+				<form method="POST" class="form-group row">
+					<div>
+						<p>Les joueurs : </p>
+						<ul>
+							<c:forEach items="${players}" var="player">
+								<li>${player.username}</li>
+							</c:forEach>
+						</ul>
+						<c:if test="${error != null}">
+							<p style="color: red; font-weight:bold">${error}</p>
 						</c:if>
+						<div class="form-group row">
+							<label for="paperInputs3">Entrée les noms des joueurs : </label>
+							<input class="input-block" type="text" id="paperInputs3" name="name">
+						</div>
+						<button style="margin-top: 20px" class="btn-block border border-4 border-primary" type="submit">Ajouter</button>
 					</div>
-				    <button style="margin-top: 20px" class="btn-block border border-4 border-primary" type="submit">Ajouter</button>
-          </div>
-					<a href="/game">
-					  <button style="margin-top: 20px" class="btn-block border border-4 border-primary">Lancer la partie</button>
+					${ debug.id }
+				</form>
+				<div class="col">
+					<a href="/players/go">
+						<button style="margin-top: 20px" class="btn-block border border-4 border-primary">Lancer la partie</button>
 					</a>
-        </div>
-			</form>
+				</div>
+			</div>
 		</div>
 	</t:base>
 </body>
