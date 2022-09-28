@@ -17,8 +17,9 @@
 	integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
 	crossorigin="anonymous"></script>
 
+	<link rel="stylesheet" href="/css/style.css">
 <body>
-	<!-- doBody insière le contenu défini dans l'utilisation du tag -->
+	<!-- doBody insiï¿½re le contenu dï¿½fini dans l'utilisation du tag -->
 	<jsp:doBody />
 </body>
 </html>

@@ -2,8 +2,8 @@ package uyw.repo;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import uyw.model.Vote;
+import uyw.model.Player;
 
-public interface IPlayerRepository extends JpaRepository<Vote, Integer> {
+public interface IPlayerRepository extends JpaRepository<Player, Integer> {
     
 }
