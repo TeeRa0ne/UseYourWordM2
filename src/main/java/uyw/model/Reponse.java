@@ -20,6 +20,9 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Reponse {
 
+	public Reponse(String answer) {
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "rep_id")

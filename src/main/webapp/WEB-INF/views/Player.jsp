@@ -37,10 +37,8 @@
 					</div>
 				    <button style="margin-top: 20px" class="btn-block border border-4 border-primary" type="submit">Ajouter</button>
           </div>
-					<a href="/game">
-					  <button style="margin-top: 20px" class="btn-block border border-4 border-primary">Lancer la partie</button>
-					</a>
-        </div>
+					  <a href="/game" style="margin-top: 20px" class="btn-block border border-4 border-primary">Lancer la partie</a>
+      	</div>
 			</form>
 		</div>
 	</t:base>
