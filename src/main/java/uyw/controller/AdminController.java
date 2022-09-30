@@ -58,12 +58,12 @@ public class AdminController {
 	}
 	
 	@PostMapping("/edit")
-	public String edit(@RequestParam int id, Media argMedia) {
+	public String edit(@RequestParam int id, @RequestParam EMedia type, @RequestParam String url, Media argMedia) {
 		Optional<Media> optMedia = this.repoMedia.findById(id);
 		
 		if (optMedia.isPresent()) {
-			optMedia.get().setMedia(argMedia.getMedia());
-      optMedia.get().setUrl(argMedia.getUrl());
+			optMedia.get().setMedia(type);
+      optMedia.get().setUrl(url);
 
 			this.repoMedia.save(optMedia.get());
 		}
