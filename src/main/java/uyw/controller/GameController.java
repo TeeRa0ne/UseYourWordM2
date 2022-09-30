@@ -11,9 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import uyw.dto.MediaDto;
-import uyw.model.Media;
+import uyw.model.EMedia;
 import uyw.model.Reponse;
-import uyw.repo.IPlayerRepository;
 import uyw.repo.IReponseRepository;
 
 @Controller
@@ -28,7 +27,7 @@ public class GameController {
 
 		// Afficher un media (image, video, texte)
 		MediaDto mediaDto = new MediaDto();
-		mediaDto.setMedia(Media.values()[new Random().nextInt(Media.values().length)]);
+		mediaDto.setMedia(EMedia.values()[new Random().nextInt(EMedia.values().length)]);
 
 
 		switch (mediaDto.getMedia()) {
