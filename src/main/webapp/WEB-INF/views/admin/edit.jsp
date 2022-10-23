@@ -13,11 +13,11 @@
     flex-direction: column;
     margin-top: 50px;
     ">
-        <label for="type">Type</label>
+        <label for="type">Type - accepte uniquement : IMAGE, VIDEO, TEXTE</label>
 				<input type="text" name="type" value="${ media.media }" placeholder="Type : (IMAGE, VIDEO, TEXTE)" />
         <div style="height: 30px"></div>
-        <label for="url">Url</label>
-        <input type="text" name="url" value="${ media.url }" placeholder="Url" />
+        <label for="url">Url ou texte</label>
+        <input type="text" name="url" value="${ media.url }" placeholder="Url ou texte..." />
         <div style="height: 30px"></div>
         <input class="paper-btn btn-success" type="submit" value="Valider" />
 		</div>
