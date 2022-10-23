@@ -12,20 +12,16 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
+@Table(name = "[mediadto]")
 @Getter @Setter
 @NoArgsConstructor
-@Table(name = "[Media]")
-public class Media {
-  
-  @Id
+public class MediaDto {
+	
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
+	@Column(name = "mediadto_id")
 	private int id;
-  
-  @Column(name = "url", nullable = false)
-  private String url;
 
-  @Column(name = "type", nullable = false)
-  private EMedia media;
-
+	@Column(name = "mediadto_media", nullable = false)
+	private Media media;
 }
