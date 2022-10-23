@@ -15,6 +15,7 @@ import javax.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import uyw.dto.MediaDto;
 
 @Entity
 @Table(name = "[game]")
@@ -27,11 +28,14 @@ public class Game {
 	@Column(name = "game_id")
 	private int id;
 
-    // @ManyToMany
-	// @JoinTable(name = "medias", joinColumns = @JoinColumn(name = "game_id"), inverseJoinColumns = @JoinColumn(name = "media_id"))
-	// private List<MediaInterface> medias;
+	@Column(name = "shortcode")
+	private String shortcode;
 
     @ManyToMany
 	@JoinTable(name = "players", joinColumns = @JoinColumn(name = "game_id"), inverseJoinColumns = @JoinColumn(name = "player_id"))
 	private List<Player> players;
+
+	@ManyToMany
+	@JoinTable(name = "medias", joinColumns = @JoinColumn(name = "game_id"), inverseJoinColumns = @JoinColumn(name = "mediadto_id"))
+	private List<MediaDto> medias;
 }

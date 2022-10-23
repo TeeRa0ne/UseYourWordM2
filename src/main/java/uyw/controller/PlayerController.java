@@ -2,6 +2,7 @@ package uyw.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
@@ -84,7 +85,20 @@ public class PlayerController {
 	}
 
 	@GetMapping
-	public String player() {
+	public String player(@RequestParam("id") Optional<String> param, Model model) {
+		if (param == null || param.isEmpty()) {
+			//random number letter
+			String slug = "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";	
+			String name = "";
+			for (int i = 0; i < 5; i++) {
+				name += slug.charAt((int)(Math.random() * slug.length()));
+			}
+
+			model.addAttribute("gameId", name);
+			return "redirect:/players?id=" + name;
+		}
+		
+		model.addAttribute("gameId", param.get());
 		return "Player";
 	}
 }
