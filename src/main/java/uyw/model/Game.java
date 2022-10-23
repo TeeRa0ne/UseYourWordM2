@@ -27,9 +27,9 @@ public class Game {
 	@Column(name = "game_id")
 	private int id;
 
-    // @ManyToMany
-	// @JoinTable(name = "medias", joinColumns = @JoinColumn(name = "game_id"), inverseJoinColumns = @JoinColumn(name = "media_id"))
-	// private List<MediaInterface> medias;
+    @ManyToMany
+	@JoinTable(name = "medias", joinColumns = @JoinColumn(name = "game_id"), inverseJoinColumns = @JoinColumn(name = "media_id"))
+	private List<Media> medias;
 
     @ManyToMany
 	@JoinTable(name = "players", joinColumns = @JoinColumn(name = "game_id"), inverseJoinColumns = @JoinColumn(name = "player_id"))
