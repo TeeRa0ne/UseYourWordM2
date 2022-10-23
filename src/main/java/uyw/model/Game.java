@@ -1,40 +1,41 @@
 package uyw.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import uyw.dto.MediaDto;
+
+@Entity
+@Table(name = "[game]")
+@Getter @Setter
+@NoArgsConstructor
 public class Game {
-	
-	List<Player> player = new ArrayList<Player>();
-	
-	List<Answer> answer = new ArrayList<Answer>();
-	
-	private String idManche;
 
-	public List<Player> getPlayer() {
-		return player;
-	}
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "game_id")
+	private int id;
 
-	public void setPlayer(List<Player> player) {
-		this.player = player;
-	}
+	@Column(name = "shortcode")
+	private String shortcode;
 
-	public List<Answer> getAnswer() {
-		return answer;
-	}
+    @ManyToMany
+	@JoinTable(name = "players", joinColumns = @JoinColumn(name = "game_id"), inverseJoinColumns = @JoinColumn(name = "player_id"))
+	private List<Player> players;
 
-	public void setAnswer(List<Answer> answer) {
-		this.answer = answer;
-	}
-
-	public String getIdManche() {
-		return idManche;
-	}
-
-	public void setIdManche(String idManche) {
-		this.idManche = idManche;
-	}
-	
-	
-
+	@ManyToMany
+	@JoinTable(name = "medias", joinColumns = @JoinColumn(name = "game_id"), inverseJoinColumns = @JoinColumn(name = "mediadto_id"))
+	private List<MediaDto> medias;
 }

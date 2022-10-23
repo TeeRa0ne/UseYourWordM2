@@ -1,5 +1,8 @@
 package uyw.controller;
 
+import java.util.Random;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,30 +10,41 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import uyw.dto.MediaDto;
+import uyw.model.Media;
+import uyw.model.Reponse;
+import uyw.repo.IGameRepository;
+import uyw.repo.IPlayerRepository;
+import uyw.repo.IReponseRepository;
+
 @Controller
 @RequestMapping("/game") // Préfixer tous les mapping
 public class GameController {
+
+	@Autowired
+	private IReponseRepository repoResponse;
 	
+	@Autowired
+	private IGameRepository repoGame;
+
 	@GetMapping
-	public String game(@RequestParam String name, Model model) {
-
-		//Recuperer les joueurs et les faire défiler au fil des tours 
-
+	public String game(Model model, @RequestParam String shortcode) {
+		// get last media
+		Media media = repoGame.findLastMedia(shortcode);
+		model.addAttribute("media", media);
 		
-		
-	
-
-		
-
 		return "Game";
 	}
 	
 	@PostMapping
-	public String doPost() {
-		
-
-		
-		return "Game";
-	}
-	
+	public String doPost(@RequestParam String answer, Model model) {
+		model.addAttribute("answer", answer);
+		if (answer == null || answer.isEmpty()) {
+			return "Game";
+		} else {
+			Reponse response = new Reponse(answer);
+			this.repoResponse.save(response);
+			return "Game";
+		}
+	}	
 }
