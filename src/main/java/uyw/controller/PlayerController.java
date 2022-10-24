@@ -43,7 +43,7 @@ public class PlayerController {
 
 	@GetMapping
 	public String player(@RequestParam("id") Optional<String> param, Model model) {
-		if (param == null) {
+		if (param == null || param.isEmpty()) {
 			//random number letter
 			String slug = "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";	
 			String name = "";
