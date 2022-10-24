@@ -38,7 +38,7 @@ public class VoteController {
 		model.addAttribute("shortcode", shortcode);
 		model.addAttribute("tour", media);
 		model.addAttribute("media", repoGame.findByShortCode(shortcode).getMedias().get(media));
-		return "Vote";
+		return "vote";
 	}
 
 	@GetMapping("/addVote")
@@ -49,17 +49,5 @@ public class VoteController {
 		
 		//redirect to vote page
 		return "redirect:/vote?shortcode="+shortcode+"&media="+ (media + 1);
-	}
-
-	@GetMapping("/wait")
-	public String wait(@RequestParam int id, HttpSession session) {
-		Reponse reponse = this.repoReponse.findById(id).get();
-		reponse.setVote(reponse.getVote() + 1);
-		this.repoReponse.save(reponse);
-
-		session.setAttribute("vote", true);
-		
-		//redirect to vote page
-		return "redirect:/vote";
 	}
 } 
