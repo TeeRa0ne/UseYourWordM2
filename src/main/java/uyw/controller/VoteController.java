@@ -1,17 +1,18 @@
 package uyw.controller;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 import uyw.model.Player;
 import uyw.model.Reponse;
+import uyw.repo.IGameRepository;
 import uyw.repo.IPlayerRepository;
 import uyw.repo.IReponseRepository;
 
@@ -20,35 +21,38 @@ public class VoteController {
 	
 	@Autowired
 	private IReponseRepository repoReponse;
-
-	//TODO : Remplacer le paramètre par la valeur de la session
+	
 	@Autowired
-	private IPlayerRepository repoPlayer;
+	private IGameRepository repoGame;
 
 	@GetMapping("/vote")
-	public String afficher(Model model) {
-		if (repoPlayer.count() == 0) {
-			for(int i = 0; i < 10; i++) {
-				Reponse reponse = new Reponse();
-	
-				//TODO : Remplacer le paramètre par la valeur de la session
-				Player player = new Player();
-				player.setUsername(("Alexis" + i));
-				this.repoPlayer.save(player);
-		
-				reponse.setReponse("La réponse" + i);
-		
-				reponse.setPlayer(player);
-				this.repoReponse.save(reponse);
-			}
+	public String afficher(Model model, @RequestParam String shortcode, @RequestParam int media) {
+
+		if(media == 3) {
+			return "redirect:/vote/wait?shortcode=" + shortcode + "&action=leaderboard";
 		}
 
-		model.addAttribute("reponse", this.repoReponse.findAll());
+		List<Reponse> reponses = repoReponse.getAllForVote(shortcode, media);
+
+		model.addAttribute("reponse", reponses);
+		model.addAttribute("shortcode", shortcode);
+		model.addAttribute("tour", media);
+		model.addAttribute("media", repoGame.findByShortCode(shortcode).getMedias().get(media));
 		return "Vote";
 	}
 
 	@GetMapping("/addVote")
-	public String ajouter(@RequestParam int id, HttpSession session) {
+	public String ajouter(@RequestParam int id, HttpSession session, @RequestParam String shortcode, @RequestParam int media) {
+		Reponse reponse = this.repoReponse.findById(id).get();
+		reponse.setVote(reponse.getVote() + 1);
+		this.repoReponse.save(reponse);
+		
+		//redirect to vote page
+		return "redirect:/vote?shortcode="+shortcode+"&media="+ (media + 1);
+	}
+
+	@GetMapping("/wait")
+	public String wait(@RequestParam int id, HttpSession session) {
 		Reponse reponse = this.repoReponse.findById(id).get();
 		reponse.setVote(reponse.getVote() + 1);
 		this.repoReponse.save(reponse);

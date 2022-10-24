@@ -7,6 +7,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -20,6 +24,9 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Reponse {
 
+	public Reponse(String answer) {
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "rep_id")
@@ -28,6 +35,9 @@ public class Reponse {
 	@Column(name = "rep_value", nullable = false)
 	private String reponse;
 
+	@Column(name = "rep_tour", nullable = false)
+	private int tour;
+
 	@Column(name = "rep_vote", nullable = false)
 	private int vote;
 	
@@ -35,11 +45,11 @@ public class Reponse {
 	@JoinColumn(name = "rep_player", nullable = false)
 	private Player player;
 
-	// @ManyToOne(cascade = CascadeType.PERSIST)
-	// @JoinColumn(name = "rep_media", nullable = false)
-	// private MediaInterface media;
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "rep_media", nullable = false)
+	private Media media;
 
-    // @ManyToMany(mappedBy = "reps")
-	// @JoinColumn(name = "rep_partie", nullable = false)
-	// private Game game;
+    @OneToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "rep_game", nullable = false)
+	private Game game;
 }
