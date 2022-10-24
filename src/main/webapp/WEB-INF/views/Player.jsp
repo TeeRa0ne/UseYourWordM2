@@ -33,7 +33,7 @@
 					</c:if>
 					<div class="form-group row">
 						<label for="username">Entre ton pseudo : </label>
-						<input class="input-block" type="text" id="username" name="name">
+						<input class="input-block" required type="text" id="username" name="name">
 					</div>
 					<button style="margin-top: 20px" class="btn-block border border-4 border-primary addUserButton" type="submit">Ajouter</button>
 				</div>
@@ -57,6 +57,7 @@
 			var socket = new SockJS('/ws');
 			var stompClient = Stomp.over(socket);
 			var gameId = "${gameId}";
+			var username = "";
 
 			function connect() {          
 
@@ -73,9 +74,11 @@
 			}
 
 			$(".addUserButton").click(function() {
-				var username = $("#username").val();
-				stompClient.send("/app/player/addUser", {}, JSON.stringify({ 'content': username, 'sender' : gameId, 'type' : 'MESSAGE' }));
-				$('.formulaire').remove();
+				if($("#username").val() != ""){
+					username = $("#username").val();
+					stompClient.send("/app/player/addUser", {}, JSON.stringify({ 'content': username, 'sender' : gameId, 'type' : 'MESSAGE' }));
+					$('.formulaire').remove();
+				}
 			});
 
 			$(".startGame").click(function() {
@@ -88,7 +91,7 @@
 					$('.playerList').append('<li>' + message.content + '</li>');
 				} else if (message.type === 'ACTION') {
 					if (message.content === 'startGame') {
-						window.location.href = "/game?shortcode=" + gameId;
+						window.location.href = "/game?shortcode=" + gameId + "&username=" + username  + "&media=0";
 					}
 				}
 			}			

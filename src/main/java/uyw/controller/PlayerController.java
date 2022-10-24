@@ -1,6 +1,5 @@
 package uyw.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,58 +13,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import uyw.model.Game;
-import uyw.model.Media;
 import uyw.model.Player;
 import uyw.repo.IGameRepository;
-import uyw.repo.IPlayerRepository;
-
-import org.springframework.web.bind.annotation.PostMapping;
-
 
 @Controller
 @RequestMapping("/players")
-
 public class PlayerController {
 	@Autowired
-	private IPlayerRepository repoPlayer;
-	
-	@Autowired
 	private IGameRepository repoGame;
-
-	@PostMapping
-	public String addPlayer(@RequestParam String name, Model model, HttpSession session) {
-		List<Player> players = new ArrayList<Player>();
-		
-		if(session.getAttribute("error") != null) {
-			model.addAttribute("error", session.getAttribute("error"));
-			session.removeAttribute("error");
-		} else {
-			model.addAttribute("error", "");
-		}
-		
-		if(session.getAttribute("Players") != null) {
-
-			//TODO : Fix caste
-			players = (List<Player>)session.getAttribute("Players");
-		}
-
-		Player player = new Player(name);
-		model.addAttribute("players", players);
-		if (name == null || name.isEmpty()) {
-			model.addAttribute("error", "Pseudo requis.");
-		} else {
-
-			//TODO : check if player already exists
-			players.add(player);
-			player.setUsername(name);
-			repoPlayer.save(player);
-		}
-
-
-		session.setAttribute("Players", players);
-		return "Player";
-	}
-
 
 	@GetMapping("/go")
 	public String startNewGame(HttpSession session) {
@@ -83,13 +38,6 @@ public class PlayerController {
 		session.setAttribute("gameId", this.repoGame.save(game).getId());
 		session.removeAttribute("Players");
 
-		// generate one media for the game
-		Media media = new Media();
-		media.randomMedia();
-
-		// save media and get db id
-		
-		
 		return "redirect:/game?shotcode=" + session.getAttribute("gameId");
 	}
 

@@ -38,7 +38,7 @@
 				<label for="large-input">Votre réponse :</label>
 				<textarea style="margin-bottom: 20px"
 					class="border border-5 border-primary" id="large-input" rows="4"
-					cols="50" placeholder="Décrire l'image..."></textarea>
+					cols="50" placeholder="Décrire l'image..." name="answer"></textarea>
 				<button class="btn-block border border-4 border-primary">Envoyer</button>
 			</form>
 		</div>
